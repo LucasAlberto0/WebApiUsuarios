@@ -23,15 +23,18 @@ builder.Services.AddSwaggerGen();
 
 
 
-    builder.Services
-    .AddIdentity<Usuario, IdentityRole>()
-    .AddEntityFrameworkStores<UsuarioDbContext>()
-    .AddDefaultTokenProviders(); 
+builder.Services
+.AddIdentity<Usuario, IdentityRole>()
+.AddEntityFrameworkStores<UsuarioDbContext>()
+.AddDefaultTokenProviders();
 
-    builder.Services.AddAutoMapper
-    (AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddAutoMapper
+(AppDomain.CurrentDomain.GetAssemblies());
 
-    builder.Services.AddControllers();
+builder.Services.AddControllers();
+
+builder.Services.AddScoped<UsuarioService>();
+builder.Services.AddScoped<TokenService>();
 
 var app = builder.Build();
 
@@ -39,9 +42,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.UseSwagger(); 
-    app.UseSwaggerUI(); 
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
+
 
 app.UseHttpsRedirection();
 
