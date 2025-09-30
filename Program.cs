@@ -6,19 +6,22 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 
-builder.Services.AddDbContext<UsuarioDbContext>();
 
-builder.Services.AddControllers();
-builder.Services.AddOpenApi();
-builder.Services.AddSwaggerGen();
-
-var connString = builder.Configuration.GetConnectionString("UsuarioConnection");
+// var connString = builder.Configuration.GetConnectionString("UsuarioConnection");
 
 builder.Services.AddDbContext<UsuarioDbContext>
     (opts =>
     {
-        opts.UseMySql(connString, ServerVersion.AutoDetect(connString));
+        opts.UseMySql(builder.Configuration.GetConnectionString("UsuarioConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("UsuarioConnection")));
     });
+
+builder.Services.AddDbContext<UsuarioDbContext>();
+
+
+builder.Services.AddOpenApi();
+builder.Services.AddSwaggerGen();
+
+
 
     builder.Services
     .AddIdentity<Usuario, IdentityRole>()
@@ -27,6 +30,8 @@ builder.Services.AddDbContext<UsuarioDbContext>
 
     builder.Services.AddAutoMapper
     (AppDomain.CurrentDomain.GetAssemblies());
+
+    builder.Services.AddControllers();
 
 var app = builder.Build();
 
