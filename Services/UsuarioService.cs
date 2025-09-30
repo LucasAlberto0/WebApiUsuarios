@@ -27,7 +27,7 @@ public class UsuarioService
             throw new ApplicationException("Falha ao cadastrar usuário!");
         }
 
-        _tokenService.GenerateToken(usuario);
+        // _tokenService.GenerateToken(usuario);
     }
 
     public async Task<string> Login(LoginUsuarioDto dto)
