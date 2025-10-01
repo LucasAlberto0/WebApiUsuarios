@@ -1,16 +1,17 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-[ApiController]
-[Route("[Controller]")]
-
-public class AcessoController : ControllerBase
+namespace UsuariosApi.Controllers
 {
-    [HttpGet]
-    [Authorize(Policy = "IdadeMinima")]
-    [Authorize(AuthenticationSchemes = "Bearer")] 
-    public IActionResult Get()
+    [ApiController]
+    [Route("[Controller]")]
+    public class AcessoController : ControllerBase
     {
-        return Ok("Acesso permitido!");
+        [HttpGet]
+        [Authorize(Policy = "IdadeMinima")]
+        public IActionResult Get() 
+        {
+            return Ok("Acesso permitido!");
+        }
     }
 }

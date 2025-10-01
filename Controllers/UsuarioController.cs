@@ -16,18 +16,19 @@ namespace UsuarioApi.Controllers
         }
 
         [HttpPost("cadastro")]
-        public async Task<IActionResult> CadastraUsuario(CreateUsuarioDto dto)
+        public async Task<IActionResult> CadastraUsuario
+            (CreateUsuarioDto dto)
         {
             await _usuarioService.CadastraUsuario(dto);
             return Ok("Usuário cadastrado!");
+
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginUsuarioDto dto)
+        public async Task<IActionResult> LoginAsync(LoginUsuarioDto dto)
         {
             var token = await _usuarioService.Login(dto);
             return Ok(token);
         }
-        
     }
 }
