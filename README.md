@@ -7,7 +7,7 @@
 
 
 ## Tecnologias utilizadas:
-- .Net v9.0.9
+- .Net v9.0.9 -> Entity, Identity, Secrets, Jwt
 
 
 ## Funcionalidade
